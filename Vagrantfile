@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   # shell > "VAGRANT_EXPERIMENTAL=disks vagrant up"
     #server.vm.disk :disk, size: "40GB", name: "extra_storage"
     server.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
+      vb.memory = "1024"
       vb.name = "nfs-server"
       vb.cpus = "4"
     end
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
   # shell > "VAGRANT_EXPERIMENTAL=disks vagrant up"
     #server.vm.disk :disk, size: "40GB", name: "extra_storage"
     server.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
+      vb.memory = "4096"
       vb.name = "gitlab-server"
       vb.cpus = "4"
     end
