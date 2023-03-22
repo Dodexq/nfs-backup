@@ -2,8 +2,8 @@
 Description=backup
 
 [Mount]
-What=192.168.0.30:/var/nfs/backup
-Where=/nfs/backup
+What=192.168.0.30:/var/nfs/backups
+Where=/nfs/backups
 Options=auto
 Type=nfs
 TimeoutSec=60

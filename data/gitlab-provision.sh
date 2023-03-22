@@ -1,7 +1,7 @@
 sudo apt update
 sudo apt upgrade -y
 ## Auto mount nfs folder
-sudo mkdir -p /nfs/backup
+sudo mkdir -p /nfs/backups
 sudo cp /vagrant/data/etc/systemd/system/nfs-backup.mount /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl start nfs-backup.mount
@@ -18,4 +18,5 @@ sudo apt install gitlab-ce -y
 ## Configure Gitlab (u: root p: example-pass)
 sudo cp /vagrant/data/etc/gitlab/initial_root_password /etc/gitlab/
 sudo cp /vagrant/data/etc/gitlab/gitlab.rb /etc/gitlab/
+sudo ln -s /nfs/backups /var/opt/gitlab 
 sudo gitlab-ctl reconfigure
