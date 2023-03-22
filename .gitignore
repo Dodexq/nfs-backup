@@ -1,0 +1,4 @@
+.vagrant/
+data/dodextest.ddns.net/
+ansible.log
+temp/
