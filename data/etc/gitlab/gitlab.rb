@@ -704,7 +704,7 @@ gitlab_rails['backup_gitaly_backup_path'] = "/nfs/backups"
 #### Change the initial default admin password and shared runner registration tokens.
 ####! **Only applicable on initial setup, changing these settings after database
 ####!   is created and seeded won't yield any change.**
-# gitlab_rails['initial_root_password'] = "password"
+gitlab_rails['initial_root_password'] = "qwehjkzxc!"
 # gitlab_rails['initial_shared_runners_registration_token'] = "token"
 
 #### Toggle if root password should be printed to STDOUT during initialization
