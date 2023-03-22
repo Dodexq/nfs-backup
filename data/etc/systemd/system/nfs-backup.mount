@@ -1,0 +1,12 @@
+[Unit]
+Description=backup
+
+[Mount]
+What=192.168.0.30:/var/nfs/backup
+Where=/nfs/backup
+Options=auto
+Type=nfs
+TimeoutSec=60
+
+[Install]
+WantedBy=graphical.target

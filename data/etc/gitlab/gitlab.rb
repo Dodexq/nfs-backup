@@ -597,9 +597,9 @@ external_url 'http://gitlab-server'
 ### Backup Settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/backups.html
 
-# gitlab_rails['manage_backup_path'] = true
-# gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"
-# gitlab_rails['backup_gitaly_backup_path'] = "/opt/gitlab/embedded/bin/gitaly-backup"
+gitlab_rails['manage_backup_path'] = true
+gitlab_rails['backup_path'] = "/nfs/backup"
+gitlab_rails['backup_gitaly_backup_path'] = "/nfs/backup"
 
 ###! Docs: https://docs.gitlab.com/ee/raketasks/backup_restore.html#backup-archive-permissions
 # gitlab_rails['backup_archive_permissions'] = 0644
