@@ -15,9 +15,6 @@ cd /tmp
 curl -LO https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
 sudo bash /tmp/script.deb.sh
 sudo apt install gitlab-ce -y
-## Configure Gitlab (u: root p: example-pass)
-sudo cp /vagrant/data/etc/gitlab/initial_root_password /etc/gitlab/
+## Configure Gitlab (u: root p: qwehjkzxc!)
 sudo cp /vagrant/data/etc/gitlab/gitlab.rb /etc/gitlab/
-sudo rm -rf /var/opt/gitlab/backups
-sudo ln -s /nfs/backups /var/opt/gitlab 
 sudo gitlab-ctl reconfigure

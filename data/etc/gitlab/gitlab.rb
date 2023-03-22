@@ -599,7 +599,7 @@ external_url 'http://gitlab-server'
 
 #gitlab_rails['manage_backup_path'] = true
 #gitlab_rails['backup_path'] = "/nfs/backup"
-gitlab_rails['backup_gitaly_backup_path'] = "/nfs/backups"
+#gitlab_rails['backup_gitaly_backup_path'] = "/nfs/backups"
 
 ###! Docs: https://docs.gitlab.com/ee/raketasks/backup_restore.html#backup-archive-permissions
 # gitlab_rails['backup_archive_permissions'] = 0644
