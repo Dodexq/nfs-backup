@@ -21,4 +21,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 
 # Weekly and monthly backups
-0 0 * * * vagrant /etc/cron.d/backup-universal.sh
+0 0 * * * root /etc/cron.d/backup-universal.sh
