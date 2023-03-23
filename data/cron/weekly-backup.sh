@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Start weekly GitLab backup"
+echo "Start weekly backup"
 sudo gitlab-backup create
 bpath=/var/opt/gitlab/backups/
 nfspath=/nfs/backups/weekly/
