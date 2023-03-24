@@ -13,6 +13,7 @@ vagrant up --provision
 * Настроен exports на NFS
 * При развертывании шара смонтирована на VM Gitlab `/nfs/backups/`
 * Уложен скрипт и Cron `0 0 * * * root /etc/cron.d/backup-universal.sh`
+* Установлен стек Prometheus + Grafana `http://192.168.0.32:9090/` && `http://192.168.0.32:3000/login`
 
 
 ## env:
@@ -22,6 +23,6 @@ vagrant up --provision
 
 `DIR_TO_NFS_MONTHLY` - путь укладки ежемесячного бекапа
 
-`DAY_OF_WEEK` - в какой день недели (1..7) производить бекап
+`DAY_OF_WEEK` - в какой день недели производить бекап (1..7)
 
-`DAY_OF_MONTH` - в какой день месяца ротация бекапа
+`DAY_OF_MONTH` - в какой день месяца ротация бекапа (01..30)
