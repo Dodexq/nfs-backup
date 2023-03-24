@@ -17,3 +17,5 @@ sudo apt-get update
 sudo apt-get install grafana-enterprise -y
 sudo systemctl start grafana-server
 sudo systemctl enable grafana-server
+## Add default router
+sudo route add default gw 192.168.0.1

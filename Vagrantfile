@@ -4,9 +4,15 @@ Vagrant.configure("2") do |config|
   # shell > "VAGRANT_EXPERIMENTAL=disks vagrant up"
   # server.vm.disk :disk, size: "40GB", name: "extra_storage"
   
-  config.hostmanager.enabled = true 
+  config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
-  config.vm.boot_timeout = 900
+  config.hostmanager.ip_resolver = proc do |machine|
+    result = ""
+    machine.communicate.execute("ip addr show dev enp0s8") do |type, data|
+      result << data if type == :stdout
+    end
+    (ip = /inet (\d+\.\d+\.\d+\.\d+)/.match(result)) && ip[1]
+  end
 
   config.vm.define "nfs-server" do |server|
     server.vm.box = "geerlingguy/ubuntu2004"
@@ -37,12 +43,6 @@ Vagrant.configure("2") do |config|
     server.vm.hostname = "prom-grafana-server"  
     server.vm.network "public_network", ip: "192.168.0.32"
     server.vm.provider "virtualbox" do |vb|
-    
-    # default router
-    server.vm.provision "shell",
-    run: "always",
-    inline: "route add default gw 192.168.0.1"
-
       vb.memory = "2048"
       vb.name = "prom-grafana-server"
       vb.cpus = "4"
