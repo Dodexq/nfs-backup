@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     server.vm.hostname = "gitlab-server"  
     server.vm.network "public_network", ip: "192.168.0.31"
     server.vm.provider "virtualbox" do |vb|
-      vb.memory = "3584"
+      vb.memory = "4096"
       vb.name = "gitlab-server"
       vb.cpus = "4"
     end
@@ -37,11 +37,29 @@ Vagrant.configure("2") do |config|
     server.vm.hostname = "prom-grafana-server"  
     server.vm.network "public_network", ip: "192.168.0.32"
     server.vm.provider "virtualbox" do |vb|
-      vb.memory = "4096"
+    
+    # default router
+    server.vm.provision "shell",
+    run: "always",
+    inline: "route add default gw 192.168.0.1"
+
+      vb.memory = "2048"
       vb.name = "prom-grafana-server"
       vb.cpus = "4"
     end
     server.vm.provision "shell", path: "./data/prom-grafana-provision.sh"
   end
+
+  config.vm.define "salt-server" do |server|
+      server.vm.box = "geerlingguy/ubuntu2004"
+      server.vm.hostname = "salt-server"  
+      server.vm.network "public_network", ip: "192.168.0.33"
+      server.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.name = "salt-server"
+        vb.cpus = "2"
+      end
+      server.vm.provision "shell", path: "./data/saltstack-provision.sh"
+    end
 
 end
