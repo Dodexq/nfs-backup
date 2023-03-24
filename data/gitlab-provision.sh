@@ -1,5 +1,6 @@
 sudo apt update
 sudo apt upgrade -y
+sudo apt install net-tools -y
 ## Auto mount nfs folder
 sudo mkdir -p /nfs/backups
 sudo cp /vagrant/data/etc/systemd/system/nfs-backups.mount /etc/systemd/system/
