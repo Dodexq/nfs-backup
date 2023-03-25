@@ -56,9 +56,9 @@ Vagrant.configure("2") do |config|
     server.vm.network "public_network", ip: "192.168.0.32"
     server.vm.provider "virtualbox" do |vb|
     
-    #server.vm.provision "shell",
-      #run: "always",
-      #inline: "route add default gw 192.168.0.1"
+    server.vm.provision "shell",
+      run: "always",
+      inline: "route add default gw 192.168.0.1"
 
       vb.memory = "2048"
       vb.name = "prom-grafana-server"

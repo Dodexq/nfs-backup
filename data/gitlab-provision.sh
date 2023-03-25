@@ -28,4 +28,4 @@ sudo apt update
 sudo apt-get install salt-minion -y
 ## Connect salt-minion to salt-master
 sudo cp /vagrant/data/etc/salt/minion /etc/salt/
-sudo systemctl status salt-minion.service
+sudo systemctl restart salt-minion.service
