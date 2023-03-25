@@ -27,3 +27,13 @@ vagrant up --provision
 `DAY_OF_WEEK` - в какой день недели производить бекап (1..7)
 
 `DAY_OF_MONTH` - в какой день месяца ротация бекапа (01..30)
+
+## salt
+Salt-minion уже развернут на всех VM. Для accept Key for minion на salt-server: `sudo salt-key -L` - список подключенных minion агентов. `sudo salt-key -A` принять агентов.
+```
+Accepted Keys:
+gitlab-server
+nfs-server
+prom-grafana-server
+```
+Ping: `sudo salt '*' test.ping`

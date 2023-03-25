@@ -3,7 +3,8 @@ sudo apt upgrade -y
 sudo apt install net-tools -y
 ## Install nfs-server 
 sudo apt install nfs-kernel-server -y
-sudo mkdir -p /var/nfs/backups/weekly && sudo mkdir -p /var/nfs/backups/weekly
+sudo mkdir -p /var/nfs/backups/weekly && sudo mkdir /var/nfs/backups/monthly
+sudo chown -R /var/nfs/backups && sudo chmod -R 777 /var/nfs/backups
 sudo cp /vagrant/data/etc/exports /etc/exports
 sudo systemctl restart nfs-kernel-server
 ## Install salt minion

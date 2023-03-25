@@ -5,7 +5,7 @@ sudo apt install net-tools -y
 wget -P /tmp https://github.com/prometheus/prometheus/releases/download/v2.37.0/prometheus-2.37.0.linux-amd64.tar.gz
 tar xvf /tmp/prometheus-2.37.0.linux-amd64.tar.gz -C /tmp
 cd /tmp/prometheus-2.37.0.linux-amd64 && sudo mv prometheus /usr/bin/ && sudo mv promtool /usr/bin/
-sudo mkdir /etc/prometheus && sudo mv console /etc/prometheus/ && sudo mv console_libraries /etc/prometheus/
+sudo mkdir /etc/prometheus && sudo mv consoles /etc/prometheus/ && sudo mv console_libraries /etc/prometheus/
 sudo cp prometheus.yml /etc/prometheus && sudo cp /vagrant/data/etc/systemd/system/prometheus.service /etc/systemd/system/
 sudo systemctl start prometheus.service && sudo systemctl enable prometheus.service
 ## Install Grafana

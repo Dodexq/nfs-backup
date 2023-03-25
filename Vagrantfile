@@ -14,6 +14,18 @@ Vagrant.configure("2") do |config|
     (ip = /inet (\d+\.\d+\.\d+\.\d+)/.match(result)) && ip[1]
   end
 
+  config.vm.define "salt-server" do |server|
+      server.vm.box = "geerlingguy/ubuntu2004"
+      server.vm.hostname = "salt-server"  
+      server.vm.network "public_network", ip: "192.168.0.33"
+      server.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.name = "salt-server"
+        vb.cpus = "2"
+      end
+      server.vm.provision "shell", path: "./data/saltstack-provision.sh"
+    end
+
   config.vm.define "nfs-server" do |server|
     server.vm.box = "geerlingguy/ubuntu2004"
     server.vm.hostname = "nfs-server"  
@@ -44,9 +56,9 @@ Vagrant.configure("2") do |config|
     server.vm.network "public_network", ip: "192.168.0.32"
     server.vm.provider "virtualbox" do |vb|
     
-    server.vm.provision "shell",
-      run: "always",
-      inline: "route add default gw 192.168.0.1"
+    #server.vm.provision "shell",
+      #run: "always",
+      #inline: "route add default gw 192.168.0.1"
 
       vb.memory = "2048"
       vb.name = "prom-grafana-server"
@@ -54,17 +66,5 @@ Vagrant.configure("2") do |config|
     end
     server.vm.provision "shell", path: "./data/prom-grafana-provision.sh"
   end
-
-  config.vm.define "salt-server" do |server|
-      server.vm.box = "geerlingguy/ubuntu2004"
-      server.vm.hostname = "salt-server"  
-      server.vm.network "public_network", ip: "192.168.0.33"
-      server.vm.provider "virtualbox" do |vb|
-        vb.memory = "2048"
-        vb.name = "salt-server"
-        vb.cpus = "2"
-      end
-      server.vm.provision "shell", path: "./data/saltstack-provision.sh"
-    end
 
 end
