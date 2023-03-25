@@ -9,4 +9,4 @@ sudo apt-get install salt-master -y
 sudo apt-get install salt-ssh -y
 ## Configure salt-master
 sudo cp /vagrant/data/salt/master /etc/salt/
-sudo systemctl restart salt-master.service	
+sudo systemctl restart salt-master.service

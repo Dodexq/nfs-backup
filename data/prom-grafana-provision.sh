@@ -17,5 +17,11 @@ sudo apt-get update
 sudo apt-get install grafana-enterprise -y
 sudo systemctl start grafana-server
 sudo systemctl enable grafana-server
-## Add default router
-sudo route add default gw 192.168.0.1
+## Install salt minion
+sudo curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/20.04/amd64/3004/salt-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/py3/ubuntu/20.04/amd64/3004 focal main" | sudo tee /etc/apt/sources.list.d/salt.list
+sudo apt update
+sudo apt-get install salt-minion -y
+## Connect salt-minion to salt-master
+sudo cp /vagrant/data/etc/salt/minion /etc/salt/
+sudo systemctl status salt-minion.service

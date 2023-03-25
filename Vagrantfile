@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   
-  ### For connect extra_storage "experemental"
+  ## For connect extra_storage "experemental"
   # shell > "VAGRANT_EXPERIMENTAL=disks vagrant up"
   # server.vm.disk :disk, size: "40GB", name: "extra_storage"
   
@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.ip_resolver = proc do |machine|
     result = ""
-    machine.communicate.execute("ip addr show dev enp0s8") do |type, data|
+    machine.communicate.execute("ip addr show dev enp0s8") do |type, data| # "enp0s8" - youre interface name
       result << data if type == :stdout
     end
     (ip = /inet (\d+\.\d+\.\d+\.\d+)/.match(result)) && ip[1]
