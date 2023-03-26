@@ -1,9 +1,10 @@
 #!/bin/bash
+# env $DIR_TO_BACKUP $DIR_TO_NFS_WEEKLY $DIR_TO_NFS_MONTHLY $DAY_OF_WEEK (1..7) $DAY_OF_MONTH day of month (01..30)
 
 # Set default values
-DIR_TO_BACKUP="${DIR_TO_BACKUP:=/var/opt/gitlab/backups/}"
+DIR_TO_BACKUP="${DIR_TO_BACKUP:=/var/opt/gitlab/backups}"
 DIR_TO_NFS_WEEKLY="${DIR_TO_NFS_WEEKLY:=/nfs/backups/weekly}"
-DIR_TO_NFS_MONTHLY="${DIR_TO_NFS_MONTHLY:=/nfs/backups/monthly/}"
+DIR_TO_NFS_MONTHLY="${DIR_TO_NFS_MONTHLY:=/nfs/backups/monthly}"
 DAY_OF_WEEK="${DAY_OF_WEEK:=7}"
 DAY_OF_MONTH="${DAY_OF_MONTH:=01}"
 
