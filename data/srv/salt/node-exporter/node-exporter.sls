@@ -20,7 +20,7 @@ node_exporter_bin:
 
 /etc/systemd/system/node_exporter.service:
   file.managed:
-    - source: salt://data/node_exporter.service
+    - source: salt:///node-exporter/data/node_exporter.service
     - user: root
     - group: root
     - mode: '0744'

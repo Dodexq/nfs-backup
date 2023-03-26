@@ -28,7 +28,7 @@ vagrant up --provision
 
 `DAY_OF_MONTH` - в какой день месяца ротация бекапа (01..30)
 
-## salt
+## SaltStack
 Salt-minion уже развернут на всех VM. Для accept Key for minion на salt-server: `sudo salt-key -L` - список подключенных minion агентов. `sudo salt-key -A` принять агентов.
 ```
 Accepted Keys:
@@ -36,10 +36,14 @@ gitlab-server
 nfs-server
 prom-grafana-server
 ```
-Ping: `sudo salt '*' test.ping`
+Тест: `sudo salt '*' test.ping`
 
-## Раскатка node-exporter
-На salt-server: `sudo salt '*' state.apply node-exporter`
+## Раскатка Salt-master:
+На salt-server: 
+
+Node-exporter по всем VM: `sudo salt '*' state.apply node-exporter/node-exporter`
+
+Cronjob backup: `sudo salt gitlab-server state.apply backup-universal/backup-cron-sh`
 
 ## Grafana
 Data Sources / Prometheus - url Prometheus: `http://192.168.0.32:9090/`
