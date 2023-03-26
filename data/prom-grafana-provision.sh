@@ -8,6 +8,10 @@ cd /tmp/prometheus-2.37.0.linux-amd64 && sudo mv prometheus /usr/bin/ && sudo mv
 sudo mkdir /etc/prometheus && sudo mv consoles /etc/prometheus/ && sudo mv console_libraries /etc/prometheus/
 sudo cp prometheus.yml /etc/prometheus && sudo cp /vagrant/data/etc/systemd/system/prometheus.service /etc/systemd/system/
 sudo systemctl start prometheus.service && sudo systemctl enable prometheus.service
+## Connect Prometheus to node-exporter
+sudo cp /vagrant/data/etc/prometheus/prometheus.yml /etc/prometheus/
+sudo systemctl restart prometheus.service
+
 ## Install Grafana
 sudo apt-get install apt-transport-https -y
 sudo apt-get install software-properties-common -y

@@ -11,7 +11,9 @@ sudo apt-get install salt-ssh -y
 sudo cp /vagrant/data/salt/master /etc/salt/
 sudo systemctl restart salt-master.service
 ## Install salt minion
-
+sudo apt-get install salt-minion -y
 ## Connect salt-minion to salt-master
 sudo cp /vagrant/data/etc/salt/minion /etc/salt/
 sudo systemctl restart salt-minion.service
+## Salt add job node-exporter install
+sudo cp -rf /vagrant/srv/salt/* /srv/salt

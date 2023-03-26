@@ -37,3 +37,12 @@ nfs-server
 prom-grafana-server
 ```
 Ping: `sudo salt '*' test.ping`
+
+## Раскатка node-exporter
+На salt-server: `sudo salt '*' state.apply node-exporter`
+
+## Grafana
+Data Sources / Prometheus - url Prometheus: `http://192.168.0.32:9090/`
+
+Import Dashboard 1860
+

@@ -12,14 +12,14 @@
 #default_include: master.d/*.conf
 
 # The address of the interface to bind to:
-interface: 192.168.0.33
+interface: 0.0.0.0
 
 # Whether the master should listen for IPv6 connections. If this is set to True,
 # the interface option must be adjusted, too. (For example: "interface: '::'")
-#ipv6: False
+ipv6: False
 
 # The tcp port used by the publisher:
-#publish_port: 4505
+publish_port: 4505
 
 # The user under which the salt master will run. Salt will update all
 # permissions to allow the specified user to run the master. The exception is
@@ -32,7 +32,7 @@ interface: 192.168.0.33
 
 # The port used by the communication interface. The ret (return) port is the
 # interface used for the file server, authentication, job returns, etc.
-#ret_port: 4506
+ret_port: 4506
 
 # Specify the location of the daemon process ID file:
 #pidfile: /var/run/salt-master.pid
@@ -267,7 +267,7 @@ interface: 192.168.0.33
 # return calls made from minions to the master. If the master seems to be
 # running slowly, increase the number of threads. This setting can not be
 # set lower than 3.
-#worker_threads: 5
+worker_threads: 10
 
 # Set the ZeroMQ high water marks
 # http://api.zeromq.org/3-2:zmq-setsockopt
@@ -674,10 +674,10 @@ interface: 192.168.0.33
 #     - /srv/salt/prod/services
 #     - /srv/salt/prod/states
 #
-#file_roots:
-#  base:
-#    - /srv/salt
-#
+file_roots:
+  base:
+    - /srv/salt/
+
 
 # The master_roots setting configures a master-only copy of the file_roots dictionary,
 # used by the state compiler.
@@ -846,9 +846,9 @@ interface: 192.168.0.33
 # Pillar is laid out in the same fashion as the file server, with environments,
 # a top file and sls files. However, pillar data does not need to be in the
 # highstate format, and is generally just key/value pairs.
-#pillar_roots:
-#  base:
-#    - /srv/pillar
+pillar_roots:
+  base:
+    - /srv/salt/pillar
 #
 #ext_pillar:
 #  - hiera: /etc/hiera.yaml
