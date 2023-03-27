@@ -50,3 +50,7 @@ Data Sources / Prometheus - url Prometheus: `http://192.168.0.32:9090/`
 
 Import Dashboard 1860
 
+## Backup-exporter
+Бинарник и исходник ./data/backup-exporter/backup-exporter
+Порт 9950 `http://127.0.0.1:9950/`, метрики: `http://127.0.0.1:9950/metrics` weekly_backups_total и monthly_backups_total.
+Инкремент: `http://127.0.0.1:9950/weeklyBackupsInc` и `http://127.0.0.1:9950/monthlyBackupsInc`   
