@@ -14,7 +14,7 @@ vagrant up --provision
 * Настроен exports на NFS
 * При развертывании шара смонтирована на VM Gitlab `/nfs/backups/`
 * Уложен скрипт и Cron `0 0 * * * root /etc/cron.d/backup-universal.sh`
-* Установлен стек Prometheus + Grafana `http://192.168.0.32:9090/` && `http://192.168.0.32:3000/ (Host: prom-grafana-server) (Public IP: http://5.3.173.222:3000/ login: admin, pass: Admin4grafana#)`
+* Установлен стек Prometheus + Grafana `http://192.168.0.32:9090/` && `http://192.168.0.32:3000/ (Host: prom-grafana-server) (Public IP: http://109.106.138.175:3000 login: admin, pass: Admin4grafana#)`
 
 
 ## env:

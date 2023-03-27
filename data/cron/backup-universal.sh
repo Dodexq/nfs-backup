@@ -9,7 +9,7 @@ DAY_OF_WEEK="${DAY_OF_WEEK:=7}"
 DAY_OF_MONTH="${DAY_OF_MONTH:=01}"
 
 # Parse command-line arguments
-OPTIONS=$(getopt -n $0 -o a:b:c:d:e: --long DIR_TO_BACKUP:,DIR_TO_NFS_WEEKLY:,DIR_TO_NFS_MONTHLY:,DAY_OF_WEEK:,DIR_TO_NFS_WEEKLY: -- "$@")
+OPTIONS=$(getopt -n $0 -o a:b:c:d:e: --long DIR_TO_BACKUP:,DIR_TO_NFS_WEEKLY:,DIR_TO_NFS_MONTHLY:,DAY_OF_WEEK:,DAY_OF_MONTH: -- "$@")
 if [ $? -ne 0 ]; then
   exit 1
 fi
