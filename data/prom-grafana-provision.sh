@@ -11,7 +11,13 @@ sudo systemctl start prometheus.service && sudo systemctl enable prometheus.serv
 ## Connect Prometheus to node-exporter
 sudo cp /vagrant/data/etc/prometheus/prometheus.yml /etc/prometheus/
 sudo systemctl restart prometheus.service
-
+## Install Alert-manager
+wget -P /tmp https://github.com/prometheus/alertmanager/releases/download/v0.25.0/alertmanager-0.25.0.linux-amd64.tar.gz
+tar xvf /tmp/alertmanager-0.25.0.linux-amd64.tar.gz -C /tmp
+cd /tmp/alertmanager-0.25.0.linux-amd64 && sudo mv alertmanager /usr/bin/ && sudo mv amtool /usr/bin/
+sudo mkdir /etc/alertmanager
+sudo cp alertmanager.yml /etc/alertmanager && sudo cp /vagrant/data/etc/systemd/system/alertmanager.service /etc/systemd/system/
+sudo systemctl start alertmanager.service && sudo systemctl enable alertmanager.service
 ## Install Grafana
 sudo apt-get install apt-transport-https -y
 sudo apt-get install software-properties-common -y

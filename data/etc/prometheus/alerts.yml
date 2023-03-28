@@ -1,0 +1,10 @@
+groups:
+- name: weekly_backups
+  rules:
+  - alert: BackupNotIncremented
+    expr: changes(weekly_backups_total[5m]) < 1
+    for: 6m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Backup has not been incremented in the last 10 days"

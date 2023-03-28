@@ -1,0 +1,12 @@
+[Unit]
+Description=Alertmanager
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/alertmanager \
+	--config.file=/etc/alertmanager/alertmanager.yml \
+	--storage.path=/var/lib/prometheus/alertmanager \
+	--cluster.advertise-address="127.0.0.1:9093"\
+
+[Install]
+WantedBy=multi-user.target
