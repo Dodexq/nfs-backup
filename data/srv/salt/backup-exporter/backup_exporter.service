@@ -1,0 +1,12 @@
+[Unit]
+Description=Backup Exporter
+After=network.target
+
+[Service]
+User=backup_exporter
+Group=backup_exporter
+Type=simple
+ExecStart=/usr/local/bin/backup_exporter
+
+[Install]
+WantedBy=multi-user.target

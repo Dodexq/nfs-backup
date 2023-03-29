@@ -1,6 +1,7 @@
 base:	
   '*':
-    - node-exporter
+    node-exporter.node-exporter-install
   
   'gitlab-server':
-  	- backup-cron-sh
+  	backup-universal.backup-cron-sh
+  	backup-exporter.install
