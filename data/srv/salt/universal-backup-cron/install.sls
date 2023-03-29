@@ -21,7 +21,9 @@ setup_env_vars:
     - user: root
     - name: 
         - 'DIR_TO_NFS_WEEKLY'
-        - 'DAY_OF_WEEK' 
+        - 'DAY_OF_MONTH' 
+        - 'DAY_OF_WEEK'
     - value: 
         - '/home/vagrant'
-        - '3'
+        - '29'
+        - '1'
