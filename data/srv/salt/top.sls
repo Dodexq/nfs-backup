@@ -4,4 +4,6 @@ base:
   
   'gitlab-server':
   	universal-backup-cron.install
+
+  'prom-grafana-server':
   	backup-exporter.install

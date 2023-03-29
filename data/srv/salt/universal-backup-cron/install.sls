@@ -16,14 +16,14 @@ setup_cron_job:
     - month: '*'
     - dayweek: '*'
 
-setup_env_vars:
+cron_dir_to_backup:
     cron.env_present:
     - user: root
-    - name: 
-        - 'DIR_TO_NFS_WEEKLY'
-        - 'DAY_OF_MONTH' 
-        - 'DAY_OF_WEEK'
-    - value: 
-        - '/home/vagrant'
-        - '29'
-        - '1'
+    - name: DIR_TO_BACKUP
+    - value: /home/vagrant
+
+cron_day_of_month:
+    cron.env_present:
+    - user: root
+    - name: DAY_OF_MONTH
+    - value: 29
