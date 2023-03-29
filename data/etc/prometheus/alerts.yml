@@ -1,10 +1,19 @@
 groups:
 - name: weekly_backups
   rules:
-  - alert: BackupNotIncremented
-    expr: changes(weekly_backups_total[5m]) < 1
-    for: 6m
+  - alert: WeeklyBackupNotIncremented
+    expr: changes(weekly_backups_total[1m]) < 1
+    for: 1m
     labels:
-      severity: warning
+      severity: critical
+    annotations:
+      summary: "Backup has not been incremented in the last 10 days"
+- name: monthly_backups
+  rules:
+  - alert: MonthlyBackupNotIncremented
+    expr: changes(monthly_backups_total[1m]) < 1
+    for: 1m
+    labels:
+      severity: critical
     annotations:
       summary: "Backup has not been incremented in the last 10 days"
