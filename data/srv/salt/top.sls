@@ -3,5 +3,5 @@ base:
     node-exporter.node-exporter-install
   
   'gitlab-server':
-  	backup-universal.backup-cron-sh
+  	universal-backup-cron.install
   	backup-exporter.install

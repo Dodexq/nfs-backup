@@ -9,7 +9,7 @@ DAY_OF_WEEK="${DAY_OF_WEEK:=7}"
 DAY_OF_MONTH="${DAY_OF_MONTH:=01}"
 
 # Parse command-line arguments
-OPTIONS=$(getopt -n $0 -o a:b:c:d:e: --long DIR_TO_BACKUP:,DIR_TO_NFS_WEEKLY:,DIR_TO_NFS_MONTHLY:,DAY_OF_WEEK:,DIR_TO_NFS_WEEKLY: -- "$@")
+OPTIONS=$(getopt -n $0 -o a:b:c:d:e: --long DIR_TO_BACKUP:,DIR_TO_NFS_WEEKLY:,DIR_TO_NFS_MONTHLY:,DAY_OF_WEEK:,DAY_OF_MONTH: -- "$@")
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -54,6 +54,7 @@ backup() {
     if [ -e $DIR_TO_NFS_WEEKLY/$(basename "$FILE") ]; then
       rm $FILE
       echo "Weekly backup done: to NFS folder: $DIR_TO_NFS_WEEKLY/$(basename "$FILE")"
+      curl http://192.168.0.32:9950/weeklyBackupsInc
     else
       echo "Some error, backup in $DIR_TO_NFS_MONTHLY not exists."
     fi
@@ -68,8 +69,16 @@ rotate_backups() {
   for FILE in $ALL_BACKUP_WEEK; do
     rm $FILE
   done
+  curl http://192.168.0.32:9950/monthlyBackupsInc
   
 }
+
+# Rotate backups once a month (01..30)
+if [ "$(date +%d)" -eq $DAY_OF_MONTH ]; then
+  rotate_backups
+else 
+  echo "Monthly backup not today"
+fi
 
 # Create backups once a week (%u - day of week (1..7); 1 is Monday)
 if [ "$(date +%u)" -eq $DAY_OF_WEEK ]; then
@@ -78,9 +87,3 @@ else
   echo "Weekly backup not today"
 fi
 
-# Rotate backups once a month (01..30)
-if [ "$(date +%d)" -eq $DAY_OF_MONTH ]; then
-  rotate_backups
-else 
-  echo "Monthly backup not today"
-fi
