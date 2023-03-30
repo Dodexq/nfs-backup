@@ -7,6 +7,7 @@ DIR_TO_NFS_WEEKLY="${DIR_TO_NFS_WEEKLY:=/nfs/backups/weekly}"
 DIR_TO_NFS_MONTHLY="${DIR_TO_NFS_MONTHLY:=/nfs/backups/monthly}"
 DAY_OF_WEEK="${DAY_OF_WEEK:=7}"
 DAY_OF_MONTH="${DAY_OF_MONTH:=01}"
+EXPORTER_URL="${EXPORTER_URL:=http://gitlab2.dev.ramax.ru:9950}"
 
 # Parse command-line arguments
 OPTIONS=$(getopt -n $0 -o a:b:c:d:e: --long DIR_TO_BACKUP:,DIR_TO_NFS_WEEKLY:,DIR_TO_NFS_MONTHLY:,DAY_OF_WEEK:,DAY_OF_MONTH: -- "$@")
@@ -59,7 +60,7 @@ backup() {
         echo "ERROR: Weekly backup not copied to folder: $DIR_TO_NFS_WEEKLY/"
       fi
     done
-    curl http://192.168.0.32:9950/weeklyBackupsInc
+    curl $EXPORTER_URL/weeklyBackupsInc
   else
     echo "ERROR: $DIR_TO_BACKUP/ is empty, Backup not create"
   fi
@@ -75,7 +76,7 @@ rotate_backups() {
       for FILE in $ALL_BACKUP_WEEK; do
         rm $FILE
       done
-      curl http://192.168.0.32:9950/monthlyBackupsInc
+      curl $EXPORTER_URL/monthlyBackupsInc
     else
       echo "ERROR: Monthly Backup in $DIR_TO_NFS_MONTHLY/ not exists"
     fi
