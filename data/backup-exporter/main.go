@@ -23,7 +23,7 @@ func main() {
 	// Register the metrics with the Prometheus collector
 	prometheus.MustRegister(weeklyBackups, monthlyBackups)
 
-	// Start an HTTP server to expose the metrics on port 9900
+	// Start an HTTP server to expose the metrics on port 9950
 	http.Handle("/metrics", promhttp.Handler())
 	go func() {
 		if err := http.ListenAndServe(":9950", nil); err != nil {

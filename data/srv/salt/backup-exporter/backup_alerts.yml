@@ -2,7 +2,7 @@ groups:
 - name: weekly_backups
   rules:
   - alert: WeeklyBackupNotIncremented
-    expr: changes(weekly_backups_total[7d]) < 1
+    expr: changes(weekly_backups_total{job="backup-exporter"}[7d]) < 1
     for: 3d
     labels:
       severity: critical
@@ -11,7 +11,7 @@ groups:
 - name: monthly_backups
   rules:
   - alert: MonthlyBackupNotIncremented
-    expr: changes(monthly_backups_total[30d]) < 1
+    expr: changes(monthly_backups_total{job="backup-exporter"}[30d]) < 1
     for: 5d
     labels:
       severity: critical
