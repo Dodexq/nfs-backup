@@ -1,7 +1,7 @@
 copy_script_to_cron_dir:
     file.managed:
     - name: /etc/cron.d/backup-universal.sh
-    - source: salt://backup-exporter/backup_universal.sh
+    - source: salt://backup_exporter/backup_universal/backup_universal.sh
     - user: root
     - group: root
     - mode: 0555

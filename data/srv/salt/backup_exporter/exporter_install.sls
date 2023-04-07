@@ -13,12 +13,12 @@ copy_backup_exporter:
     - mode: '0555'
     - user: backup_exporter
     - group: backup_exporter
-    - name: /usr/local/bin/backup_exporter:
+    - name: /usr/local/bin/backup_exporter
     - source: salt://backup_exporter/exporter/backup_exporter
 
 copy_systemd_config_default_unique:
   file.managed:
-    - name: /etc/systemd/system/backup_exporter.service:
+    - name: /etc/systemd/system/backup_exporter.service
     - source: salt://backup_exporter/exporter/backup_exporter.service
     - mode: '0555'
 

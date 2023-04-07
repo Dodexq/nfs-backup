@@ -1,0 +1,14 @@
+[Unit]
+Description=Salt Exporter
+After=network.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/opt/venv_for_salt_exporter/bin/python /opt/venv_for_salt_exporter/bin/prometheus_salt_exporter
+Restart=on-failure
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target
