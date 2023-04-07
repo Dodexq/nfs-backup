@@ -15,28 +15,21 @@ alerting:
 rule_files:
   # - "first.rules"
   # - "second.rules"
-  - "backup-alerts.yml"
+  - "alerts.yml"
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
-
-  - job_name: nfs-server
-    static_configs:
-      - targets: ["192.168.0.30:9100"]
-
-  - job_name: gitlab-server
-    static_configs:
-      - targets: ["192.168.0.31:9100"]
-
-  - job_name: prom-grafana-server
-    static_configs:
-      - targets: ["192.168.0.32:9100"]
-
-  - job_name: salt-server
-    static_configs:
-      - targets: ["192.168.0.33:9100"]
+  - job_name: 'node-exporter'
+    scrape_interval: 10s    
+    file_sd_configs:
+    - files:
+      - 'targets.yaml'
 
   - job_name: backup-exporter
     static_configs:
-      - targets: ["192.168.0.32:9950"]
+    - targets: ["prom-grafana-server:9950"]
+
+  - job_name: salt-exporter
+    static_configs:
+    - targets: ["salt-server:9175"]
