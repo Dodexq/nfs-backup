@@ -4,6 +4,7 @@ base:
 
   'prom-grafana-server':
     - test_apt.nginx_install
+    - prometheus.cron_watcher_config_install
   
   'gitlab-server':
     - backup_exporter.backup_universal_cron_install
