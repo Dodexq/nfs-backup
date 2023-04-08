@@ -10,5 +10,5 @@ base:
     - backup_gitlab.backup_gitlab_with_config_install
     - backup_exporter.exporter_install
 
-  'salt-server'
+  'salt-server':
     - salt_exporter.salt_exporter_install

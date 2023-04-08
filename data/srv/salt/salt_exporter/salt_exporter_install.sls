@@ -27,7 +27,7 @@ salt_exporter_service_copy:
     - group: root
     - mode: '0744'
 
-node_exporter_enable:
+salt_exporter_enable:
   service.running:
     - name: salt_exporter.service
     - enable: True

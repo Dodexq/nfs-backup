@@ -24,12 +24,15 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "V9roR2YVz"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -42,10 +45,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -73,16 +72,16 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "SAFwLJBVk"
+            "uid": "V9roR2YVz"
           },
           "editorMode": "builder",
           "expr": "weekly_backups_total{job=\"backup-exporter\"}",
-          "legendFormat": "__auto",
+          "legendFormat": "weekly_backups_total",
           "range": true,
           "refId": "A"
         }
@@ -93,27 +92,21 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "86JF232Vz"
+        "uid": "V9roR2YVz"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "dark-red",
-                "value": 0
-              },
-              {
-                "color": "light-green",
+                "color": "green",
                 "value": 1
               }
             ]
@@ -127,7 +120,7 @@
         "x": 8,
         "y": 0
       },
-      "id": 7,
+      "id": 6,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -138,17 +131,17 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": false
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "SAFwLJBVk"
+            "uid": "V9roR2YVz"
           },
-          "editorMode": "builder",
-          "expr": "changes(weekly_backups_total{job=\"backup-exporter\"}[7d])",
+          "editorMode": "code",
+          "expr": "changes(weekly_backups_total{instance=\"prom-grafana-server:9950\", job=\"backup-exporter\"}[7d])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -158,7 +151,11 @@
       "type": "gauge"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "V9roR2YVz"
+      },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -171,10 +168,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -202,16 +195,16 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "SAFwLJBVk"
+            "uid": "V9roR2YVz"
           },
           "editorMode": "builder",
           "expr": "monthly_backups_total{job=\"backup-exporter\"}",
-          "legendFormat": "__auto",
+          "legendFormat": "monthly_backups_total",
           "range": true,
           "refId": "A"
         }
@@ -222,27 +215,21 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "86JF232Vz"
+        "uid": "V9roR2YVz"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "dark-red",
-                "value": 0
-              },
-              {
-                "color": "light-green",
+                "color": "green",
                 "value": 1
               }
             ]
@@ -256,7 +243,7 @@
         "x": 8,
         "y": 6
       },
-      "id": 6,
+      "id": 8,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -267,17 +254,17 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": false
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "SAFwLJBVk"
+            "uid": "V9roR2YVz"
           },
           "editorMode": "code",
-          "expr": "changes(monthly_backups_total{job=\"backup-exporter\"}[30d])",
+          "expr": "changes(monthly_backups_total{instance=\"prom-grafana-server:9950\", job=\"backup-exporter\"}[30d])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -289,7 +276,7 @@
   ],
   "refresh": "",
   "revision": 1,
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -303,6 +290,6 @@
   "timezone": "",
   "title": "Gitlab-backup",
   "uid": "4MSXhEBVk",
-  "version": 9,
+  "version": 14,
   "weekStart": ""
 }
