@@ -1,0 +1,50 @@
+groups:
+- name: weekly_backups
+  rules:
+  - alert: WeeklyBackupNotIncremented
+    expr: changes(weekly_backups_total{job="backup-exporter"}[7d]) < 1
+    for: 3d
+    labels:
+      severity: critical
+    annotations:
+      summary: "Weekly Backup has not been incremented in the last 10 days"
+- name: monthly_backups
+  rules:
+  - alert: MonthlyBackupNotIncremented
+    expr: changes(monthly_backups_total{job="backup-exporter"}[30d]) < 1
+    for: 3d
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monthly Backup has not been incremented in the last 35 days"
+
+- name: HighCPUUsageAndLoadAverage
+  rules: 
+  - alert: HighCPUUsageAndLoadAverage
+    expr: (100 * (1 - avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])))) > 90 and avg by (instance)(node_load1) > 2 * count(cpu)
+    for: 30m
+    labels:
+      severity: critical
+    annotations:
+      summary: High CPU Usage and Load Average on {{ $labels.instance }}
+      description: CPU Usage is {{ printf "%.2f" $value }}% and Load Average is {{ printf "%.2f" $value }} per core on {{ $labels.instance }} for more than 30 minutes.
+- name: LowRAMAllocatable 
+  rules:
+  - alert: LowRAMAllocatable
+    expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) < 0.8
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: Low RAM Allocatable on {{ $labels.instance }}
+      description: RAM Allocatable is {{ printf "%.2f" $value }}% on {{ $labels.instance }}.
+- name: HighNetUsage
+  rules:
+    - alert: HighNetUsage
+      expr: sum(rate(node_network_receive_bytes_total[5m])) + sum(rate(node_network_transmit_bytes_total[5m])) > 500e6
+      for: 30m
+      labels:
+        severity: critical
+      annotations:
+        summary: High Network Usage on {{ $labels.instance }}
+        description: Network usage is {{ humanize $value }}bps on {{ $labels.instance }} for more than 30 minutes. 
