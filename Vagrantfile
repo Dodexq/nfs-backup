@@ -67,4 +67,15 @@ Vagrant.configure("2") do |config|
     server.vm.provision "shell", path: "./data/prom-grafana-provision.sh"
   end
 
+  config.vm.define "mini-vm" do |server|
+    server.vm.box = "geerlingguy/ubuntu2004"
+    server.vm.hostname = "mini-vm"  
+    server.vm.network "public_network", ip: "192.168.0.35"
+    server.vm.provider "virtualbox" do |vb|
+      vb.memory = "512"
+      vb.name = "mini-vm"
+      vb.cpus = "2"
+    end
+  end
+
 end
