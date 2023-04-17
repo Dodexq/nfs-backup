@@ -1,7 +1,7 @@
 groups:
 - name: weekly_backups
   rules:
-  - alert: WeeklyBackupNotIncremented
+  - alert: WeeklyBackupNotIncrementedZVO
     expr: changes(weekly_backups_total{job="backup-exporter"}[7d]) < 1
     for: 3d
     labels:
@@ -17,7 +17,6 @@ groups:
       severity: critical
     annotations:
       summary: "Monthly Backup has not been incremented in the last 35 days"
-
 - name: HighCPUUsageAndLoadAverage
   rules: 
   - alert: HighCPUUsageAndLoadAverage
@@ -28,23 +27,33 @@ groups:
     annotations:
       summary: High CPU Usage and Load Average on {{ $labels.instance }}
       description: CPU Usage is {{ printf "%.2f" $value }}% and Load Average is > 2 per core on {{ $labels.instance }} for more than 30 minutes.
-- name: node-exporter
+- name: LowRAMAllocatable 
   rules:
-    - alert: AllocatableRAMUsageHigh
-      expr: 100 * (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 80
-      for: 5m
-      labels:
-        severity: critical
-      annotations:
-        summary: "RAM usage exceeding 80% of allocatable memory"
-        description: "RAM usage is currently at {{ $value }}%, which is above the threshold of 80%."
+  - alert: LowRAMAllocatable
+    expr: 100 - (100 * (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 80
+    for: 30m
+    labels:
+      severity: critical
+    annotations:
+      summary: Low RAM Allocatable on {{ $labels.instance }}
+      description: RAM Allocatable is {{ printf "%.2f" $value }}% on {{ $labels.instance }}.
 - name: HighNetUsage
   rules:
     - alert: HighNetUsage
-      expr: sum(rate(node_network_receive_bytes_total[5m])) + sum(rate(node_network_transmit_bytes_total[5m])) > 500e6
+      expr: ((irate(node_network_receive_bytes_total[5m]) + irate(node_network_transmit_bytes_total[5m])) > 62.5e6) * 8
       for: 30m
       labels:
         severity: critical
       annotations:
         summary: High Network Usage on {{ $labels.instance }}
-        description: Network usage is {{ humanize $value }}bps on {{ $labels.instance }} for more than 30 minutes. 
+        description: Network usage is {{ humanize $value }}bps on {{ $labels.instance }} for more than 30 minutes.
+- name: DiskSpaceGreaterThan90Percent
+  rules:
+  - alert: DiskSpaceGreaterThan90Percent
+    expr: 100 - (100 * ((node_filesystem_avail_bytes{mountpoint="/",fstype!="rootfs"} )  / (node_filesystem_size_bytes{mountpoint="/",fstype!="rootfs"}))) > 90
+    for: 30m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Free disk space on {{ $labels.instance }} is greater than 90%."
+      description: "Free disk space on {{ $labels.instance }} is greater than 90% for more than 30 minutes."

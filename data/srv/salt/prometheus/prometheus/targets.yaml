@@ -1,0 +1,5 @@
+- targets: ['nfs-server:9100']
+- targets: ['gitlab-server:9100']
+- targets: ['prom-grafana-server:9100']
+- targets: ['salt-server:9100']
+- targets: ['mini-vm:9100']

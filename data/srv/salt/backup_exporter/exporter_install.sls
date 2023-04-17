@@ -29,5 +29,3 @@ service-backup-exporter-enable:
 service-backup-exporter-start:
   service.running:
     - name: backup_exporter
-
-

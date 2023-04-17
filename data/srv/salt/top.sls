@@ -13,3 +13,6 @@ base:
 
   'salt-server':
     - salt_exporter.salt_exporter_install
+
+  'mini-vm':
+    - test_apt.nginx_install

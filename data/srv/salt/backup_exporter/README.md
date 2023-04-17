@@ -44,6 +44,15 @@ setup_cron_job:
     - dayweek: '*'
 
 ```
+### Проверить cron правила
+```
+cat /var/spool/cron/crontabs/root
+```
+### Логи срабатывания cron
+```
+cat /var/mail/root
+```
+
 ### Конфигурация Alert Groups для Prometheus
 `./backup_alerts.yml`
 ```

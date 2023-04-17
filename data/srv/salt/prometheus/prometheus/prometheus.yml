@@ -1,0 +1,35 @@
+# Sample config for Prometheus.
+
+global:
+  scrape_interval:     5s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 5s # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ['127.0.0.1:9093']
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  # - "first.rules"
+  # - "second.rules"
+  - "alerts.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  - job_name: 'node-exporter'
+    scrape_interval: 10s    
+    file_sd_configs:
+    - files:
+      - 'targets.yaml'
+
+  - job_name: backup-exporter
+    static_configs:
+    - targets: ["prom-grafana-server:9950"]
+
+  - job_name: salt-exporter
+    static_configs:
+    - targets: ["salt-server:9175"]

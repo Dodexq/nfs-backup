@@ -1,3 +1,5 @@
+# Venv python3.10 for salt_exporter
+
 salt_exporter_tar:
   archive.extracted:
     - name: /tmp/python3.10_venv_for_salt_exporter
@@ -25,7 +27,7 @@ salt_exporter_service_copy:
     - source: salt://salt_exporter/data/salt_exporter.service
     - user: root
     - group: root
-    - mode: '0744'
+    - mode: '0555'
 
 salt_exporter_enable:
   service.running:

@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "salt-server" do |server|
       server.vm.box = "geerlingguy/ubuntu2004"
       server.vm.hostname = "salt-server"  
-      server.vm.network "public_network", ip: "192.168.0.33"
+      server.vm.network "public_network", ip: "192.168.1.33"
       server.vm.provider "virtualbox" do |vb|
         vb.memory = "2048"
         vb.name = "salt-server"
@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "nfs-server" do |server|
     server.vm.box = "geerlingguy/ubuntu2004"
     server.vm.hostname = "nfs-server"  
-    server.vm.network "public_network", ip: "192.168.0.30"
+    server.vm.network "public_network", ip: "192.168.1.30"
     server.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
       vb.name = "nfs-server"
@@ -39,9 +39,9 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "gitlab-server" do |server|
-    server.vm.box = "geerlingguy/ubuntu2004"
+    server.vm.box = "centos/7"
     server.vm.hostname = "gitlab-server"  
-    server.vm.network "public_network", ip: "192.168.0.31"
+    server.vm.network "public_network", ip: "192.168.1.31"
     server.vm.provider "virtualbox" do |vb|
       vb.memory = "4096"
       vb.name = "gitlab-server"
@@ -53,7 +53,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "prom-grafana-server" do |server|
     server.vm.box = "geerlingguy/ubuntu2004"
     server.vm.hostname = "prom-grafana-server"  
-    server.vm.network "public_network", ip: "192.168.0.32"
+    server.vm.network "public_network", ip: "192.168.1.32"
     server.vm.provider "virtualbox" do |vb|
     
     # server.vm.provision "shell",
@@ -70,7 +70,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "mini-vm" do |server|
     server.vm.box = "geerlingguy/ubuntu2004"
     server.vm.hostname = "mini-vm"  
-    server.vm.network "public_network", ip: "192.168.0.35"
+    server.vm.network "public_network", ip: "192.168.1.35"
     server.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
       vb.name = "mini-vm"
