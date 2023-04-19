@@ -43,6 +43,7 @@ Vagrant.configure("2") do |config|
     server.vm.hostname = "gitlab-server"  
     server.vm.network "public_network", ip: "192.168.0.31"
     server.vm.provider "virtualbox" do |vb|
+      vb.customize ["setextradata", :id, "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", 1]
       vb.memory = "4096"
       vb.name = "gitlab-server"
       vb.cpus = "4"
