@@ -53,15 +53,15 @@ fi
 
 backup() {
   if [[ -d $DIR_TO_NFS_WEEKLY ]]; then
-    ALL_BACKUP="$(find $DIR_TO_BACKUP -type f -print0 | xargs -0)"
-    if [[ ! -z "$ALL_BACKUP" ]]; then
-      for FILE in $ALL_BACKUP; do
+    ALL_TAR_BACKUP="$(find $DIR_TO_BACKUP -type f -name "*.tar" -printf "%f\n")"
+    if [[ ! -z "$ALL_TAR_BACKUP" ]]; then
+      for FILE in $ALL_TAR_BACKUP; do
         mv $FILE $DIR_TO_NFS_WEEKLY
         echo "Weekly backup done to folder: $DIR_TO_NFS_WEEKLY/$(basename "$FILE")"
       done
       curl $EXPORTER_URL/weeklyBackupsInc
     else
-      echo "ERROR: $DIR_TO_BACKUP/ is empty, Backup not create"
+      echo "ERROR: $DIR_TO_BACKUP/ has no .tar backup with config, backup not create"
     fi
   else
     echo "ERROR: Folder to move WEEKLY Backup $DIR_TO_NFS_WEEKLY does not exist"
