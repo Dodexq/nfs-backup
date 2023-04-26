@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Location</title>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+        
+        function showPosition(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            var location = document.getElementById("location");
+            location.innerHTML = "Latitude: " + lat + "<br>Longitude: " + lon;
+            sendGet(lat, lon)
+        }
+        function sendGet(lat, lon) {
+            const xhr = new XMLHttpRequest();
+            var frompython = document.getElementById("frompython");
+            xhr.open('POST', 'http://192.168.0.35:5000/location');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = () => {
+                const response = JSON.parse(xhr.responseText);
+                console.log(response.message);
+                frompython.innerHTML = response.message;
+            };
+            xhr.send(JSON.stringify({ lat, lon }));
+        }
+
+    </script>
+</head>
+<body>
+    <h1>My Location</h1>
+    <button onclick="getLocation()">Get Location</button>
+    <div id="location"></div>
+    <div id="frompython"></div>
+</body>
+</html>

@@ -69,13 +69,13 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "mini-vm" do |server|
-    server.vm.box = "geerlingguy/ubuntu2004"
+    server.vm.box = "Ecodev/ubuntu-server-2204"
     server.vm.hostname = "mini-vm"  
     server.vm.network "public_network", ip: "192.168.0.35"
     server.vm.provider "virtualbox" do |vb|
-      vb.memory = "512"
+      vb.memory = "2048"
       vb.name = "mini-vm"
-      vb.cpus = "2"
+      vb.cpus = "4"
     end
   end
 
